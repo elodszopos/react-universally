@@ -160,7 +160,18 @@ export default function webpackConfigFactory(buildOptions) {
             'style-loader',
             {
               path: 'css-loader',
-              query: { sourceMap: true },
+              query: {
+                modules: true,
+                sourceMap: true,
+              },
+            },
+            { path: 'postcss-loader' },
+            {
+              path: 'sass-loader',
+              options: {
+                outputStyle: 'expanded',
+                sourceMap: true,
+              },
             },
           ],
         }),
@@ -245,20 +256,18 @@ export default function webpackConfigFactory(buildOptions) {
 
         ifElse(isClient || isServer)(
           merge(
-            {
-              test: /\.css$/,
-            },
+            { test: /(\.scss|\.css)$/ },
             ifDevClient({
               loaders: ['happypack/loader?id=happypack-devclient-css'],
             }),
             ifProdClient(() => ({
               loader: ExtractTextPlugin.extract({
                 fallbackLoader: 'style-loader',
-                loader: ['css-loader'],
+                loader: 'css-loader?modules&sourceMap&importLoaders=2!postcss-loader!sass-loader?outputStyle=expanded&sourceMap&sourceMapContents',
               }),
             })),
             ifNode({
-              loaders: ['css-loader/locals'],
+              loaders: ['css-loader/locals', 'postcss-loader', 'sass-loader'],
             }),
           ),
         ),

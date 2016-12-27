@@ -4,9 +4,11 @@ function executeTasks(location, dispatch) {
   const tasksToExecute = ['deferredData'];
 
   if (window && window.__APP_STATE__) {
-    tasksToExecute.unshift('prefetchData');
     delete window.__APP_STATE__;
+  } else {
+    tasksToExecute.unshift('prefetchData');
   }
+
   const executingTasks = runTasksForLocation(location, tasksToExecute, { dispatch });
 
   if (executingTasks) {

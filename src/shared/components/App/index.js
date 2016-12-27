@@ -7,7 +7,7 @@ import { CodeSplit } from 'code-split-component';
 import { safeConfigGet } from 'shared/utils/config';
 
 import 'normalize.css/normalize.css';
-import './globals.css';
+import './globals.scss';
 
 import Error404 from './Error404';
 import Header from './Header';

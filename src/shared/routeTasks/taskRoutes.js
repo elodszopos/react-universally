@@ -5,7 +5,7 @@ function taskRoutes({ dispatch }) {
     {
       pattern: '/posts/:id',
       prefetchData: ({ id } : { id: number }) => dispatch(PostActions.fetch(id)),
-      deferredData: ({ id } : { id: number }) => dispatch(PostActions.fetch(id)),
+      // deferredData: ({ id } : { id: number }) => dispatch(PostActions.fetch(id)),
     },
   ];
 }
