@@ -1,11 +1,11 @@
-/* @flow */
-
+/* eslint global-require: 0 */
 import chokidar from 'chokidar';
 import { resolve as pathResolve } from 'path';
 import appRootDir from 'app-root-dir';
 import { log } from '../utils';
 
 let HotDevelopment = require('./hotDevelopment').default;
+
 let devServer = new HotDevelopment();
 
 // Any changes to our webpack bundleConfigs should restart the development devServer.
@@ -13,6 +13,7 @@ const watcher = chokidar.watch([
   pathResolve(appRootDir.get(), 'tools'),
   pathResolve(appRootDir.get(), 'config'),
 ]);
+
 watcher.on('ready', () => {
   watcher.on('change', () => {
     log({

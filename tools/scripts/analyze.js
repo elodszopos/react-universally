@@ -1,5 +1,3 @@
-/* @flow */
-
 // This script creates a webpack stats file on our production build of the
 // client bundle and then launches the webpack-bundle-analyzer tool allowing
 // you to easily see what is being included within your bundle.  Really helpful
@@ -22,7 +20,7 @@ const clientCompiler = webpack(clientConfigFactory());
 
 clientCompiler.run((err, stats) => {
   if (err) {
-    console.error(err);
+    console.error(err); // eslint-disable-line
   } else {
     // Write out the json stats file.
     fs.writeFileSync(
@@ -32,6 +30,7 @@ clientCompiler.run((err, stats) => {
 
     // Run the bundle analyzer against the stats file.
     const cmd = `webpack-bundle-analyzer ${anaylzeFilePath} ${config.bundles.client.outputPath}`;
+
     exec(cmd);
   }
 });

@@ -1,5 +1,3 @@
-/* @flow */
-
 // This file resolves the assets available from our client bundle.
 
 import fs from 'fs';
@@ -15,7 +13,9 @@ const assetsFilePath = pathResolve(
 
 if (!fs.existsSync(assetsFilePath)) {
   throw new Error(
-    `We could not find the "${assetsFilePath}" file, which contains a list of the assets of the client bundle.  Please ensure that the client bundle has been built.`,
+    `We could not find the "${assetsFilePath}" file,\n
+     which contains a list of the assets of the client bundle.\n
+     Please ensure that the client bundle has been built.`,
   );
 }
 
@@ -43,9 +43,10 @@ const assetsJSONResolver = () => (
  *     to the render logic.  Having this method allows us to easily fetch
  *     the respective assets simply by using a chunk name. :)
  */
-function getAssetsForClientChunks(chunks: Array<string>) {
+function getAssetsForClientChunks(chunks) {
   return chunks.reduce((acc, chunkName) => {
     const chunkAssets = assetsJSONResolver()[chunkName];
+
     if (chunkAssets) {
       if (chunkAssets.js) {
         acc.js.push(chunkAssets.js);
@@ -54,6 +55,7 @@ function getAssetsForClientChunks(chunks: Array<string>) {
         acc.css.push(chunkAssets.css);
       }
     }
+
     return acc;
   }, { js: [], css: [] });
 }

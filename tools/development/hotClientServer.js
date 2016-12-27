@@ -1,5 +1,3 @@
-/* @flow */
-
 import express from 'express';
 import createWebpackMiddleware from 'webpack-dev-middleware';
 import createWebpackHotMiddleware from 'webpack-hot-middleware';
@@ -7,17 +5,17 @@ import ListenerManager from './listenerManager';
 import { log } from '../utils';
 
 class HotClientServer {
-  webpackDevMiddleware: any;
-  listenerManager: ListenerManager;
 
-  constructor(compiler : Object) {
+  constructor(compiler) {
     const app = express();
 
     const httpPathRegex = /^https?:\/\/(.*):([\d]{1,5})/i;
     const httpPath = compiler.options.output.publicPath;
+
     if (!httpPath.startsWith('http') && !httpPathRegex.test(httpPath)) {
       throw new Error(
-        'You must supply an absolute public path to a development build of a web target bundle as it will be hosted on a seperate development server to any node target bundles.',
+        'You must supply an absolute public path to a development build of a web target bundle, \n' +
+        ' as it will be hosted on a separate development server to any node target bundles.',
       );
     }
 
@@ -58,7 +56,7 @@ class HotClientServer {
           message: 'Build failed, please check the console for more information.',
           notify: true,
         });
-        console.error(stats.toString());
+        console.error(stats.toString()); // eslint-disable-line no-console
       } else {
         log({
           title: 'client',

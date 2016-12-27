@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
   // We check the shared config, ensuring that the service worker has been
   // enabled.
   if (safeConfigGet(['serviceWorker', 'enabled'])) {
-    const OfflinePluginRuntime = require('offline-plugin/runtime');
+    const OfflinePluginRuntime = require('offline-plugin/runtime'); // eslint-disable-line global-require
 
     // Install the offline plugin, which instantiates our service worker and app
     // cache to support precaching of assets and offline support.

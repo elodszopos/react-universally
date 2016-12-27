@@ -1,6 +1,5 @@
-/* @flow */
-
 // This script builds a production output of all of our bundles.
+/* eslint no-console: 0 */
 
 import webpack from 'webpack';
 import appRootDir from 'app-root-dir';
@@ -21,9 +20,11 @@ Object.keys(config.bundles)
   const compiler = webpack(
     webpackConfigFactory({ target: bundleName, mode: 'production' }),
   );
+
   compiler.run((err, stats) => {
     if (err) {
       console.error(err);
+
       return;
     }
     console.log(stats.toString({ colors: true }));

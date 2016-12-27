@@ -1,5 +1,4 @@
-/* @flow */
-
+/* eslint global-require: 0, import/no-dynamic-require: 0, no-console: 0 */
 import webpack from 'webpack';
 import { resolve as pathResolve } from 'path';
 import appRootDir from 'app-root-dir';
@@ -8,15 +7,15 @@ import fs from 'fs';
 import config from '../../config';
 import { log, unique, without } from '../utils';
 
-function createVendorDLL(bundleName : string, bundleConfig : Object) {
+function createVendorDLL(bundleName, bundleConfig) {
   const dllConfig = config.bundles.client.devVendorDLL;
 
-  // $FlowFixMe
   const pkg = require(pathResolve(appRootDir.get(), './package.json'));
 
   const calculateDependencies = () => {
     const dependencies = Object.keys(pkg.dependencies);
     const includeDependencies = unique(dependencies.concat(dllConfig.include));
+
     return without(includeDependencies, dllConfig.exclude);
   };
 
@@ -76,9 +75,11 @@ function createVendorDLL(bundleName : string, bundleConfig : Object) {
 
       const webpackConfig = webpackConfigFactory();
       const vendorDLLCompiler = webpack(webpackConfig);
+
       vendorDLLCompiler.run((err) => {
         if (err) {
           reject(err);
+
           return;
         }
           // Update the dependency hash

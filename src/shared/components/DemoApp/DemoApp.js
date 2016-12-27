@@ -1,5 +1,4 @@
-/* @flow */
-
+/* eslint global-require: 0 */
 import React from 'react';
 import { Match, Miss } from 'react-router';
 import Helmet from 'react-helmet';

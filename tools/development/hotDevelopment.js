@@ -1,5 +1,4 @@
-/* @flow */
-
+/* eslint no-console: 0, global-require: 0, import/no-dynamic-require: 0 */
 import { resolve as pathResolve } from 'path';
 import webpack from 'webpack';
 import appRootDir from 'app-root-dir';
@@ -11,13 +10,14 @@ import webpackConfigFactory from '../webpack/configFactory';
 import config from '../../config';
 
 const usesDevVendorDLL = bundleConfig =>
-  bundleConfig.devVendorDLL != null && bundleConfig.devVendorDLL.enabled;
+  bundleConfig.devVendorDLL && bundleConfig.devVendorDLL.enabled;
 
 const vendorDLLsFailed = (err) => {
   log({
     title: 'vendorDLL',
     level: 'error',
-    message: 'Unfortunately an error occured whilst trying to build the vendor dll(s) used by the development server. Please check the console for more information.',
+    message: 'Unfortunately an error occurred whilst trying to build the vendor dll(s) used by the development server. \n' +
+    'Please check the console for more information.',
     notify: true,
   });
   if (err) {
@@ -33,11 +33,11 @@ const initializeBundle = (name, bundleConfig) => {
         mode: 'development',
       });
       // Install the vendor DLL config for the client bundle if required.
+
       if (name === 'client' && usesDevVendorDLL(bundleConfig)) {
         // Install the vendor DLL plugin.
         webpackConfig.plugins.push(
           new webpack.DllReferencePlugin({
-            // $FlowFixMe
             manifest: require(
               pathResolve(
                 appRootDir.get(),
@@ -48,6 +48,7 @@ const initializeBundle = (name, bundleConfig) => {
           }),
         );
       }
+
       return webpack(webpackConfig);
     } catch (err) {
       log({
@@ -60,12 +61,11 @@ const initializeBundle = (name, bundleConfig) => {
       throw err;
     }
   };
+
   return { name, bundleConfig, createCompiler };
 };
 
 class HotDevelopment {
-  hotNodeServers: Array<HotNodeServer>;
-  hotClientServer: ?HotClientServer;
 
   constructor() {
     this.hotClientServer = null;
@@ -90,6 +90,7 @@ class HotDevelopment {
         () => new Promise((resolve) => {
           const { createCompiler } = clientBundle;
           const compiler = createCompiler();
+
           compiler.plugin('done', (stats) => {
             if (!stats.hasErrors()) {
               resolve(compiler);
@@ -103,7 +104,6 @@ class HotDevelopment {
       .then((clientCompiler) => {
         this.hotNodeServers = nodeBundles
           .map(({ name, createCompiler }) =>
-            // $FlowFixMe
             new HotNodeServer(name, createCompiler(), clientCompiler),
           );
       });

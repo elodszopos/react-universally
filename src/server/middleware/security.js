@@ -1,17 +1,15 @@
-/* @flow */
-
 import uuid from 'uuid';
 import hpp from 'hpp';
 import helmet from 'helmet';
-import type { Middleware, $Request, $Response, NextFunction } from 'express';
+
 import config from '../../../config';
 
 const cspConfig = {
   directives: {
-    defaultSrc: ["'self'"],
+    defaultSrc: ['\'self\''],
     scriptSrc: [
       // Allow scripts hosted from our application.
-      "'self'",
+      '\'self\'',
       // Allow scripts from cdn.polyfill.io so that we can import the polyfill.
       'cdn.polyfill.io',
       // Note: We will execution of any inline scripts that have the following
@@ -19,17 +17,16 @@ const cspConfig = {
       // This is useful for guarding your application whilst allowing an inline
       // script to do data store rehydration (redux/mobx/apollo) for example.
       // @see https://helmetjs.github.io/docs/csp/
-      // $FlowFixMe
       (req, res) => `'nonce-${res.locals.nonce}'`,
     ],
     styleSrc: [
-      "'self'",
+      '\'self\'',
       // Webpack generates JS that loads our CSS, so this is needed:
-      "'unsafe-inline'",
+      '\'unsafe-inline\'',
       'blob:',
     ],
     imgSrc: [
-      "'self'",
+      '\'self\'',
       // If you use Base64 encoded images (i.e. inlined images), then you will
       // need the following:
       // 'data:',
@@ -38,10 +35,10 @@ const cspConfig = {
     // I can't figure out how to get around this, so if you know of a safer
     // implementation that is kinder to service workers please let me know.
     connectSrc: ['*'], // ["'self'", 'ws:'],
-    fontSrc: ["'self'"],
-    objectSrc: ["'self'"],
-    mediaSrc: ["'self'"],
-    childSrc: ["'self'"],
+    fontSrc: ['\'self\''],
+    objectSrc: ['\'self\''],
+    mediaSrc: ['\'self\''],
+    childSrc: ['\'self\''],
   },
 };
 
@@ -68,7 +65,7 @@ if (process.env.NODE_ENV === 'development') {
 // Attach a unique "nonce" to every response.  This allows use to declare
 // inline scripts as being safe for execution against our content security policy.
 // @see https://helmetjs.github.io/docs/csp/
-function nonceMiddleware(req: $Request, res: $Response, next: NextFunction) {
+function nonceMiddleware(req, res, next) {
   res.locals.nonce = uuid.v4(); // eslint-disable-line no-param-reassign
   next();
 }
@@ -123,4 +120,4 @@ const securityMiddleware = [
   helmet.contentSecurityPolicy(cspConfig),
 ];
 
-export default (securityMiddleware : Array<Middleware>);
+export default (securityMiddleware);
