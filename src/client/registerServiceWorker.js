@@ -1,4 +1,4 @@
-import { safeConfigGet } from '../shared/utils/config';
+import { safeConfigGet } from 'shared/utils/config';
 
 if (process.env.NODE_ENV === 'production') {
   if (safeConfigGet(['serviceWorker', 'enabled'])) {

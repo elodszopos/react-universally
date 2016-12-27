@@ -155,6 +155,7 @@
     "no-undef-init": 2,
     "no-underscore-dangle": [2, { "allow": [
       "_this",
+      "__APP_STATE__",
       "__CLIENT_CONFIG__"
     ] }],
     "no-unneeded-ternary": 2,
@@ -264,6 +265,7 @@
   },
   "globals": {
     "__CLIENT_CONFIG__": true,
+    "__APP_STATE__": true,
     "socket": true,
     "chai": true,
     "expect": true,

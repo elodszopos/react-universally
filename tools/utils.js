@@ -68,7 +68,7 @@ export function log(options) {
 
   switch (level) {
     case 'warn': console.log(colors.red(msg)); break;
-    case 'error': console.log(colors.bgRed.white(msg)); break;
+    case 'error': console.log(colors.red(msg)); break;
     case 'info':
     default: console.log(colors.green(msg));
   }

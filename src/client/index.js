@@ -4,19 +4,31 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router';
 import { CodeSplitProvider, rehydrateState } from 'code-split-component';
+import { Provider } from 'react-redux';
+import configureStore from 'shared/redux/configureStore';
+import App from 'shared/components/App';
 import ReactHotLoader from './components/ReactHotLoader';
-import App from '../shared/components/App';
+import TaskRoutesExecutor from './components/TaskRoutesExecutor';
 
 const container = document.querySelector('#app');
+
+const store = configureStore(window.__APP_STATE__);
 
 function renderApp(What) {
   rehydrateState().then(codeSplitState =>
     render(
       <ReactHotLoader>
         <CodeSplitProvider state={codeSplitState}>
-          <BrowserRouter>
-            {What}
-          </BrowserRouter>
+          <Provider store={store}>
+            <BrowserRouter>
+              { routerProps => (
+                  <TaskRoutesExecutor {...routerProps} dispatch={store.dispatch}>
+                    {What}
+                  </TaskRoutesExecutor>
+                )
+              }
+            </BrowserRouter>
+          </Provider>
         </CodeSplitProvider>
       </ReactHotLoader>,
       container,
