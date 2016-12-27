@@ -233,10 +233,6 @@ const config = {
             ? [
               'code-split-component/babel',
               {
-                // For our server bundle we will set the mode as being 'server'
-                // which will ensure that our code split components can be
-                // resolved synchronously, being much more helpful for
-                // pre-rendering.
                 mode: target,
               },
             ]
