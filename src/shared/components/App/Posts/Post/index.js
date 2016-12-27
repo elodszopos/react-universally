@@ -15,7 +15,7 @@ class Post extends PureComponent {
   render() {
     const { post } = this.props;
 
-    if (!post && Object.keys(post).length === 0) {
+    if (!post || Object.keys(post).length === 0) {
       // Post hasn't been fetched yet. It would be better if we had a "status"
       // reducer attached to our posts which gave us a bit more insight, such
       // as whether the post is currently being fetched, or if the fetch failed.
