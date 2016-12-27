@@ -5,12 +5,12 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router';
 import { CodeSplitProvider, rehydrateState } from 'code-split-component';
 import ReactHotLoader from './components/ReactHotLoader';
-import DemoApp from '../shared/components/DemoApp';
+import App from '../shared/components/App';
 
 // Get the DOM Element that will host our React application.
 const container = document.querySelector('#app');
 
-function renderApp(TheApp) {
+function renderApp(What) {
   // We use the code-split-component library to provide us with code splitting
   // within our application.  This library supports server rendered applications,
   // but for server rendered applications it requires that we rehydrate any
@@ -25,7 +25,7 @@ function renderApp(TheApp) {
       <ReactHotLoader>
         <CodeSplitProvider state={codeSplitState}>
           <BrowserRouter>
-            <TheApp />
+            <What />
           </BrowserRouter>
         </CodeSplitProvider>
       </ReactHotLoader>,
@@ -40,13 +40,13 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept('./index.js');
   // Any changes to our App will cause a hotload re-render.
   module.hot.accept(
-    '../shared/components/DemoApp',
-    () => renderApp(require('../shared/components/DemoApp').default),
+    '../shared/components/App',
+    () => renderApp(require('../shared/components/App').default),
   );
 }
 
 // Execute the first render of our app.
-renderApp(DemoApp);
+renderApp(App);
 
 // This registers our service worker for asset caching and offline support.
 // Keep this as the last item, just in case the code execution failed (thanks

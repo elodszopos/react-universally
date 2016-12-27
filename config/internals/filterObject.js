@@ -1,4 +1,4 @@
-function filterObjectLoop(obj         , filters         , basePropPath = '')          {
+function filterObjectLoop(obj, filters, basePropPath = '') {
   return Object.keys(filters).reduce((acc, key) => {
     const propPath = basePropPath !== '' ? `${basePropPath}.${key}` : key;
 
@@ -11,39 +11,43 @@ function filterObjectLoop(obj         , filters         , basePropPath = '')    
       if (typeof obj[key] === 'undefined') {
         throw new Error(`Filter set an "allow" on path "${propPath}", however, this path was not found on the source object.`);
       }
+
       acc[key] = obj[key]; // eslint-disable-line no-param-reassign
     }
+
     return acc;
   }, {});
 }
 
-// Applies a given set of filters to filter a given object's structure.
-//
-// The filters object should match the shape of the source object and should
-// have a truthy/falsey value indicating if the property should be included/
-// excluded.  If the filters do not contain a property that exists on the
-// source object then the respective property will be excluded.
-//
-// Example:
-//   filter(
-//     // source
-//     {
-//       foo: { bar: 'bar', qux: 'qux' },
-//       bob: 'bob',
-//       poop: { plop: 'splash' }
-//     },
-//     // filters
-//     {
-//       foo: { bar: true },
-//       poop: true
-//     }
-//   )
-//
-// Results in:
-//   {
-//     foo: { bar: 'bar' },
-//     poop: { plop: 'splash' }
-//   },
-export default function filterObject(obj         , filters         )          {
+/**
+ * Applies a given set of filters to filter a given object's structure.
+ *
+ * The filters object should match the shape of the source object and should
+ * have a truthy/falsey value indicating if the property should be included/
+ * excluded.  If the filters do not contain a property that exists on the
+ * source object then the respective property will be excluded.
+ *
+ * Example:
+ * filter(
+ *     // source
+ *     {
+ *      foo: { bar: 'bar', qux: 'qux' },
+ *      bob: 'bob',
+ *      poop: { plop: 'splash' }
+ *    },
+ *    // filters
+ *    {
+ *      foo: { bar: true },
+ *      poop: true
+ *    }
+ *  )
+ *
+ * Results in:
+ * {
+ *   foo: { bar: 'bar' },
+ *    poop: { plop: 'splash' }
+ *  },
+ */
+export default function filterObject(obj, filters) {
   return filterObjectLoop(obj, filters);
 }
