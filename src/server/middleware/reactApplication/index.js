@@ -72,14 +72,11 @@ export default function reactApplicationMiddleware(request, response) {
     response.status(renderResult.missed ? 404 : 200).send(html);
   };
 
-  const executingTasks = runTasksForLocation({ pathname: request.originalUrl }, ['prefetchData'], { dispatch });
+  const executingTasks = runTasksForLocation({ pathname: request.originalUrl }, ['prefetchData'], { dispatch, state: store.getState() });
 
   if (executingTasks) {
-    executingTasks.then(({ routes }) => {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Finished route tasks', routes);
-      }
-
+    executingTasks.then(({ routes }) => { // eslint-disable-line
+      console.log(routes);
       renderApp();
     });
   } else {

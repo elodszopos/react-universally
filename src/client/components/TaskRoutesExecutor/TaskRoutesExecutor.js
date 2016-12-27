@@ -12,19 +12,27 @@ export default class TaskRoutesExecutor extends Component {
     };
   }
 
+  static get contextTypes() {
+    return {
+      store: object,
+    };
+  }
+
   componentWillMount() {
     const { location, dispatch } = this.props;
+    const { store } = this.context;
 
     if (location) {
-      executeTasks(location, dispatch);
+      executeTasks(location, dispatch, store.getState());
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const { location, dispatch } = nextProps;
+    const { store } = this.context;
 
     if (location && location !== this.props.location) {
-      executeTasks(location, dispatch);
+      executeTasks(location, dispatch, store.getState());
     }
   }
 

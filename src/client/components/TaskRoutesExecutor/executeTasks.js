@@ -1,6 +1,6 @@
 import runTasksForLocation from 'shared/routeTasks/runTasksForLocation';
 
-function executeTasks(location, dispatch) {
+function executeTasks(location, dispatch, state) {
   const tasksToExecute = ['deferredData'];
 
   if (window && window.__APP_STATE__) {
@@ -9,7 +9,7 @@ function executeTasks(location, dispatch) {
     tasksToExecute.unshift('prefetchData');
   }
 
-  const executingTasks = runTasksForLocation(location, tasksToExecute, { dispatch });
+  const executingTasks = runTasksForLocation(location, tasksToExecute, { dispatch, state });
 
   if (executingTasks) {
     executingTasks.then(({ routes }) => { // eslint-disable-line
