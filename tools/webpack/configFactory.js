@@ -85,6 +85,7 @@ export default function webpackConfigFactory(buildOptions) {
     ),
 
     resolve: {
+      modules: ['src', 'node_modules'],
       extensions: config.bundleSrcTypes.map(ext => `.${ext}`),
     },
 

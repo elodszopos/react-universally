@@ -8,11 +8,9 @@ const cspConfig = {
   directives: {
     defaultSrc: ['\'self\''],
     scriptSrc: [
-      // Allow scripts hosted from our application.
       '\'self\'',
-      // Allow scripts from cdn.polyfill.io so that we can import the polyfill.
       'cdn.polyfill.io',
-      // Note: We will execution of any inline scripts that have the following
+      // Note: We will allow execution of any inline scripts that have the following
       // nonce identifier attached to them.
       // This is useful for guarding your application whilst allowing an inline
       // script to do data store rehydration (redux/mobx/apollo) for example.
@@ -21,7 +19,6 @@ const cspConfig = {
     ],
     styleSrc: [
       '\'self\'',
-      // Webpack generates JS that loads our CSS, so this is needed:
       '\'unsafe-inline\'',
       'blob:',
     ],
@@ -53,8 +50,6 @@ Object.keys(config.cspExtensions).forEach((key) => {
 });
 
 if (process.env.NODE_ENV === 'development') {
-  // When in development mode we need to add our secondary express server that
-  // is used to host our client bundle to our csp config.
   Object.keys(cspConfig.directives).forEach((directive) => {
     cspConfig.directives[directive].push(
       `${config.host}:${config.clientDevServerPort}`,
@@ -62,8 +57,6 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// Attach a unique "nonce" to every response.  This allows use to declare
-// inline scripts as being safe for execution against our content security policy.
 // @see https://helmetjs.github.io/docs/csp/
 function nonceMiddleware(req, res, next) {
   res.locals.nonce = uuid.v4(); // eslint-disable-line no-param-reassign

@@ -21,14 +21,8 @@ function createVendorDLL(bundleName, bundleConfig) {
 
   const devDLLDependencies = calculateDependencies().sort();
 
-  // We calculate a hash of the package.json's dependencies, which we can use
-  // to determine if dependencies have changed since the last time we built
-  // the vendor dll.
   const currentDependenciesHash = md5(JSON.stringify(
     devDLLDependencies.map(dep =>
-      // We do this to include any possible version numbers we may have for
-      // a dependency. If these change then our hash should too, which will
-      // result in a new dev dll build.
       [dep, pkg.dependencies[dep], pkg.devDependencies[dep]],
     ),
   ));
@@ -41,8 +35,7 @@ function createVendorDLL(bundleName, bundleConfig) {
 
   function webpackConfigFactory() {
     return {
-      // We only use this for development, so lets always include source maps.
-      devtool: 'inline-source-map',
+      devtool: 'cheap-module-source-map',
       entry: {
         [dllConfig.name]: devDLLDependencies,
       },
@@ -82,7 +75,6 @@ function createVendorDLL(bundleName, bundleConfig) {
 
           return;
         }
-          // Update the dependency hash
         fs.writeFileSync(vendorDLLHashFilePath, currentDependenciesHash);
 
         resolve();
@@ -92,7 +84,6 @@ function createVendorDLL(bundleName, bundleConfig) {
 
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(vendorDLLHashFilePath)) {
-      // builddll
       log({
         title: 'vendorDLL',
         level: 'warn',

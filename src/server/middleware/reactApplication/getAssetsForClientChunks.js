@@ -1,5 +1,3 @@
-// This file resolves the assets available from our client bundle.
-
 import fs from 'fs';
 import { resolve as pathResolve } from 'path';
 import appRootDir from 'app-root-dir';
@@ -21,14 +19,7 @@ if (!fs.existsSync(assetsFilePath)) {
 
 const readAssetsJSONFile = () => JSON.parse(fs.readFileSync(assetsFilePath, 'utf8'));
 const assetsJSON = readAssetsJSONFile();
-const assetsJSONResolver = () => (
-  process.env.NODE_ENV === 'development'
-    // In development mode we always read the assets json file from disk to avoid
-    // any cases where an older version gets cached.
-    ? readAssetsJSONFile()
-    // Otherwise we return the initially parsed JSON file.
-    : assetsJSON
-);
+const assetsJSONResolver = () => (process.env.NODE_ENV === 'development' ? readAssetsJSONFile() : assetsJSON);
 
 /**
  * Retrieves the js/css for the named chunks that belong to our client bundle.

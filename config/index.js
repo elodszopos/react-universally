@@ -85,8 +85,8 @@ const config = {
 
   htmlPage: {
     htmlAttributes: { lang: 'en' },
-    titleTemplate: 'React, Universally - %s',
-    defaultTitle: 'React, Universally',
+    titleTemplate: 'BoilerZone - %s',
+    defaultTitle: 'BoilerZone',
     meta: [
       {
         name: 'description',
@@ -241,6 +241,8 @@ const config = {
               },
             ]
             : null,
+          'transform-decorators-legacy',
+          'transform-react-display-name',
         ].filter(Boolean),
       };
     },

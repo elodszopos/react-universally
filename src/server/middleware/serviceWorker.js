@@ -5,9 +5,8 @@ import appRootDir from 'app-root-dir';
 
 import config from '../../../config';
 
-// Middleware to server our service worker.
-function serviceWorkerMiddleware(
-  req, res, next) {
+// do not remove unused vars
+function serviceWorkerMiddleware(req, res, next) {
   res.sendFile(
     pathResolve(
       appRootDir.get(),
