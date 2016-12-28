@@ -5,7 +5,7 @@ import * as FromState from 'shared/redux';
 
 const { object } = PropTypes;
 
-class Post extends PureComponent {
+export class Post extends PureComponent {
   static get propTypes() {
     return {
       post: object,

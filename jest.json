@@ -8,5 +8,6 @@
   ],
   "testPathIgnorePatterns": [
     "./(build|tools|node_modules|public)/"
-  ]
+  ],
+  "testRegex": "\\.jest\\.js$"
 }

@@ -5,19 +5,22 @@ html {
   font-family: $fontFamily;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+* {
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-/* Inline our ul for our menu */
 ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  list-style-type: none;
-}
 
-ul li { display: inline; margin: 0 .5rem; }
+  li {
+    display: inline;
+    margin: 0 .5rem;
+  }
+}

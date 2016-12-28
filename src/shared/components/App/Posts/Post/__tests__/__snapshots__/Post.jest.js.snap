@@ -1,0 +1,15 @@
+exports[`<Post /> renders 1`] = `
+<div>
+  <HelmetWrapper
+    title="Posts - postTitle" />
+  <h1>
+    postTitle
+  </h1>
+  <div>
+    postBody
+  </div>
+  <div>
+    Foo
+  </div>
+</div>
+`;

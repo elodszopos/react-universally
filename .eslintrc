@@ -53,7 +53,7 @@
     "import/no-dynamic-require": 2,
     "import/no-extraneous-dependencies": 0,
     "import/no-mutable-exports": 2,
-    "import/no-named-as-default": 2,
+    "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 2,
     "import/no-unresolved": 0,
     "import/prefer-default-export": 2,
@@ -156,7 +156,8 @@
     "no-underscore-dangle": [2, { "allow": [
       "_this",
       "__APP_STATE__",
-      "__CLIENT_CONFIG__"
+      "__CLIENT_CONFIG__",
+      "_load",
     ] }],
     "no-unneeded-ternary": 2,
     "no-unreachable": 2,

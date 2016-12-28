@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import About from '../index';
 
 describe('<About />', () => {
-  test('renders', () => {
+  it('renders', () => {
     const wrapper = shallow(<About />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').length).to.equal(1);
   });
 });

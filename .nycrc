@@ -1,0 +1,23 @@
+{
+  "extension": [
+    ".jsx",
+    ".js"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "exclude": [
+    "build/",
+    "nyc/",
+    "coverage/",
+    "node_modules/",
+    "public/",
+    "tools/",
+    "**/*-test.js",
+    "**/*.spec.js"
+  ],
+  "reporter": ["lcov", "text-summary"],
+  "report-dir": "./coverage",
+  "sourceMap": true,
+  "instrument": true
+}
