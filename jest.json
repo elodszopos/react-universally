@@ -1,0 +1,11 @@
+{
+  "moduleDirectories": ["src", "node_modules"],
+  "bail": true,
+  "verbose": true,
+  "snapshotSerializers": [
+    "<rootDir>/node_modules/enzyme-to-json/serializer"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/(build|tools|node_modules|public)/"
+  ]
+}

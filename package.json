@@ -1,5 +1,5 @@
 {
-  "name": "react-universally",
+  "name": "BoilerZone",
   "version": "11.0.1",
   "description": "A starter kit giving you the minimum requirements for a modern universal react application.",
   "main": "build/server/index.js",
@@ -18,11 +18,12 @@
     "lint": "esw -c .eslintrc ./src ./tools ./test --ext '.js, .jsx' --color",
     "lint:f": "esw -c .eslintrc ./src ./tools ./test --ext '.js, .jsx' --color --fix",
     "lint:w": "esw -c .eslintrc ./src ./tools ./test --ext '.js, .jsx' --color -w",
-    "lint:s": "sass-lint -c .sass-lint.yml -v -q"
+    "lint:s": "sass-lint -c .sass-lint.yml -v -q",
+    "jest": "jest --config ./jest.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ctrlplusb/react-universally.git"
+    "url": "git+https://github.com/elodszopos/react-universally.git"
   },
   "keywords": [
     "react",
@@ -34,10 +35,6 @@
     "webpack"
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ctrlplusb/react-universally/issues"
-  },
-  "homepage": "https://github.com/ctrlplusb/react-universally#readme",
   "dependencies": {
     "app-root-dir": "1.0.2",
     "axios": "0.15.3",
@@ -81,6 +78,8 @@
     "chokidar": "1.6.1",
     "css-loader": "0.26.1",
     "david": "^9.0.0",
+    "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
     "eslint": "3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "2.2.0",
@@ -92,6 +91,8 @@
     "glob": "7.1.1",
     "happypack": "3.0.1",
     "html-webpack-plugin": "2.24.1",
+    "jest-cli": "^18.0.0",
+    "json-loader": "^0.5.4",
     "match-require": "2.0.0",
     "md5": "2.2.1",
     "node-notifier": "4.6.1",
@@ -105,6 +106,7 @@
     "postcss-loader": "^1.2.0",
     "postcss-scss": "^0.4.0",
     "postcss-simple-vars": "^3.0.0",
+    "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "3.0.0-beta.6",
     "regenerator-runtime": "0.10.1",
     "rimraf": "2.5.4",
