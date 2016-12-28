@@ -19,7 +19,8 @@
     "lint:f": "esw -c .eslintrc ./src ./tools ./test --ext '.js, .jsx' --color --fix",
     "lint:w": "esw -c .eslintrc ./src ./tools ./test --ext '.js, .jsx' --color -w",
     "lint:s": "sass-lint -c .sass-lint.yml -v -q",
-    "jest": "jest --config ./jest.json"
+    "jest": "jest --config ./jest.json",
+    "j:u": "jest --config ./jest.json -u"
   },
   "repository": {
     "type": "git",
