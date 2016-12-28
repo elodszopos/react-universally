@@ -179,11 +179,8 @@ const config = {
       // a manifest.json as well as a variety of icon types. This can be
       // tricky. Luckily there is a service to help you with this.
       // http://realfavicongenerator.net/
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
-      { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
-      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#00a9d9' },
       // Make sure you update your manifest.json to match your application.
+      // The favico links are also included in the manifest
       { rel: 'manifest', href: '/manifest.json' },
     ],
     scripts: [
