@@ -26,7 +26,7 @@ Module.prototype.require = function requireV2(filePath) {
 
   // webpack modules and module-dirs
   if (filePath.match(/^((?!(\.?\.\/)))(shared|client|server|redux(\/modules|\/create)).*$/)) {
-    filePath = resolve(__dirname, `../src/${filePath}`);
+    filePath = resolve(__dirname, `../../src/${filePath}`);
   }
 
   if (typeof filePath !== 'string') {

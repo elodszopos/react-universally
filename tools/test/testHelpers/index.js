@@ -2,32 +2,34 @@
 import { PropTypes } from 'react';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
+import { expect } from 'chai';
 import configureStore from '../../../src/shared/redux/configureStore';
 
 export function getStore(overrides = {}) {
   const store = configureStore(overrides);
 
   store.originalDispatch = store.dispatch;
+
   store.dispatch = sinon.spy();
 
   return store;
 }
 
-const cx = stuffToContextualize => ({ context: { ...stuffToContextualize } });
+const cx = stuffToContextualize => ({ context: Object.assign({}, stuffToContextualize) });
 const defaultStore = getStore();
 
 function getMockStore(store) {
   return {
     subscribe: () => {},
     dispatch: () => {},
-    getState: () => ({ ...defaultStore.getState(), ...store }),
+    getState: () => (Object.assign({}, defaultStore.getState(), store)),
   };
 }
 
 export function shallowWithStore(node, customStore) {
   const store = getMockStore(customStore);
 
-  return shallow(node, { store, ...cx({ store }) });
+  return shallow(node, Object.assign({}, store, Object.assign({}, cx({ store }))));
 }
 
 export function mountWithStore(node, customStore) {
@@ -71,3 +73,12 @@ export function stubComponent(componentClass, stubProps = false, lifecycleMethod
     }
   });
 }
+
+global.expect = expect;
+global.testHelpers = {
+  getStore,
+  getMockStore,
+  shallowWithStore,
+  mountWithStore,
+  stubComponent,
+};

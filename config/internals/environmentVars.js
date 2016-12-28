@@ -20,7 +20,9 @@ function registerEnvFile() {
 
   // If we found an env file match the register it.
   if (envFilePath) {
-    console.log(colors.green(`==> Registering environment variables from: ${envFilePath}`));  // eslint-disable-line no-console
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(colors.green(`==> Registering environment variables from: ${envFilePath}`));  // eslint-disable-line no-console
+    }
     dotenv.config({ path: envFilePath });
   }
 }

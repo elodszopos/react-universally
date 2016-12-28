@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import About from '../index';
 
 describe('<About />', () => {
-  it('renders', () => {
+  test('renders', () => {
     const wrapper = shallow(<About />);
 
     expect(wrapper).toMatchSnapshot();

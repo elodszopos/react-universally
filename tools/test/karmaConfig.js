@@ -36,7 +36,7 @@ function formatBrowsers(browserToMap) {
   });
 }
 
-export default function (config) {
+function karmaConfig(config) {
   config.set({
     browsers: formatBrowsers(browsers),
     basePath: './',
@@ -44,7 +44,6 @@ export default function (config) {
     debug: true,
     singleRun: !watch || !!process.env.CI || isCi,
     frameworks: ['mocha'],
-    concurrency: Infinity,
     files: [
       './tests.webpack.js',
     ].filter(Boolean),
@@ -83,3 +82,5 @@ export default function (config) {
     },
   });
 }
+
+module.exports = karmaConfig;
