@@ -2,6 +2,12 @@
   "moduleDirectories": ["src", "node_modules"],
   "verbose": false,
   "notify": true,
+  "collectCoverage": false,
+  "collectCoverageFrom": [
+    "**/src/shared/**/*.js",
+    "!**/*.spec.js"
+  ],
+  "coverageDirectory": "./coverage",
   "cacheDirectory": ".jestCache/",
   "snapshotSerializers": [
     "./node_modules/enzyme-to-json/serializer"

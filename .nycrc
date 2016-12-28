@@ -13,6 +13,8 @@
     "node_modules/",
     "public/",
     "tools/",
+    "config/",
+    "src/server/",
     "**/*-test.js",
     "**/*.spec.js"
   ],
