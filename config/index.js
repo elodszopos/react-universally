@@ -142,7 +142,6 @@ const config = {
 
           // Only used by node/server:
           'app-root-dir',
-          'colors',
           'compression',
           'dotenv',
           'express',

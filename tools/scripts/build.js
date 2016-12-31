@@ -1,15 +1,16 @@
 // This script builds a production output of all of our bundles.
 /* eslint no-console: 0 */
 
+import fs from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import appRootDir from 'app-root-dir';
-import { resolve as pathResolve } from 'path';
 import webpackConfigFactory from '../webpack/configFactory';
 import { exec } from '../utils';
 import config from '../../config';
 
 // First clear the build output dir.
-exec(`rimraf ${pathResolve(appRootDir.get(), config.buildOutputPath)}`);
+exec(`rimraf ${path.resolve(appRootDir.get(), config.buildOutputPath)}`);
 
 // Get our "fixed" bundle names
 Object.keys(config.bundles)
@@ -27,6 +28,13 @@ Object.keys(config.bundles)
 
       return;
     }
-    console.log(stats.toString({ colors: true }));
+
+    fs.writeFile(path.resolve(__dirname, `../../coverage/webpackStats_${bundleName}.json`), JSON.stringify(stats.toJson('verbose')), (writeError) => {
+      if (writeError) {
+        return console.log(writeError);
+      }
+
+      return console.info('Prod build stats saved!');
+    });
   });
 });

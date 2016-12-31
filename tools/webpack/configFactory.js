@@ -10,6 +10,7 @@ import appRootDir from 'app-root-dir';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import CodeSplitPlugin from 'code-split-component/webpack';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+import VisualizerPlugin from 'webpack-visualizer-plugin';
 import { removeEmpty, ifElse, merge, happyPackPlugin } from '../utils';
 
 import config, { clientConfig } from '../../config';
@@ -93,6 +94,9 @@ export default function webpackConfigFactory(buildOptions) {
     plugins: removeEmpty([
       new ProgressBarPlugin(),
       ifProd(() => new CodeSplitPlugin()),
+      ifProd(() => new VisualizerPlugin({
+        filename: `webpackStats_${target}.html`,
+      })),
 
       ifClient(() => new WebpackMd5Hash()),
 
