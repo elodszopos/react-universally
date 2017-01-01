@@ -8,8 +8,8 @@ const About = () => (
     Produced with ❤️
     by
     &nbsp;
-    <a href="https://twitter.com/controlplusb" target="_blank" rel="noopener noreferrer">
-      Sean Matheson
+    <a href="https://twitter.com/elodszopos" target="_blank" rel="noopener noreferrer">
+      Elod Szopos
     </a>
   </div>
 );

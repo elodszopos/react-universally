@@ -96,7 +96,7 @@ rules:
     - 2
     - convention: camelcase
   property-sort-order:
-    - 2
+    - 0
     - ignore-custom-properties: false
   property-units:
     - 2

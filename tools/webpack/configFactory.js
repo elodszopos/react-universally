@@ -167,7 +167,7 @@ export default function webpackConfigFactory(buildOptions) {
             {
               path: 'css-loader',
               query: {
-                modules: true,
+                // modules: true,
                 sourceMap: true,
               },
             },
@@ -269,7 +269,7 @@ export default function webpackConfigFactory(buildOptions) {
             ifProdClient(() => ({
               loader: ExtractTextPlugin.extract({
                 fallbackLoader: 'style-loader',
-                loader: 'css-loader?modules&sourceMap&importLoaders=2!postcss-loader!sass-loader?outputStyle=expanded&sourceMap&sourceMapContents',
+                loader: 'css-loader?sourceMap&importLoaders=2!postcss-loader!sass-loader?outputStyle=expanded&sourceMap&sourceMapContents',
               }),
             })),
             ifNode({
