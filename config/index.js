@@ -114,6 +114,10 @@ const config = {
         rel: 'manifest',
         href: '/manifest.json',
       },
+      {
+        rel: 'stylesheet',
+        href: '/font-awesome.min.css',
+      },
     ],
     scripts: [
       // { src: 'http://include.com/pathtojs.js', type: 'text/javascript' },

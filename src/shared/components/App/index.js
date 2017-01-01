@@ -10,7 +10,6 @@ import Header from 'shared/components/Header';
 
 import 'normalize.css/normalize.css';
 import 'shared/styles/globals.scss';
-import 'shared/styles/font-awesome.min.css';
 import '../Grid/grid.scss';
 
 export default class App extends Component {

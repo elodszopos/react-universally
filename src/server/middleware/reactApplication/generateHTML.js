@@ -39,7 +39,6 @@ export default function generateHTML(args) {
         ${helmet ? helmet.meta.toString() : ''}
         ${helmet ? helmet.link.toString() : ''}
         ${styleTags(assetsForRender.css)}
-        ${helmet ? helmet.style.toString() : ''}
       </head>
       <body>
         <div id='app'>${reactAppString || ''}</div>
