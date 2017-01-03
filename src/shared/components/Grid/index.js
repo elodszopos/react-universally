@@ -1,35 +1,35 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import WidthProvider from 'react-grid-layout/build/components/WidthProvider';
 import GridLayout from 'react-grid-layout';
+import Link from 'react-router/Link';
 import gridConfig from './gridConfig';
+
+import ContactCard from './ContactCard';
+import SkillsCard from './SkillsCard';
+import LearningCard from './LearningCard';
+import ConsultingCard from './ConsultingCard';
 
 let ResponsiveReactGridLayout = GridLayout.Responsive;
 
 ResponsiveReactGridLayout = WidthProvider(ResponsiveReactGridLayout);
 
 function getRowHeight(screenHeight) {
-  let factor = 32;
+  let factor = 36;
 
   if (screenHeight > 1000) {
-    factor = 32;
-  } else if (screenHeight > 900) {
-    factor = 34;
-  } else if (screenHeight > 800) {
     factor = 36;
-  } else if (screenHeight > 700) {
+  } else if (screenHeight > 900) {
     factor = 38;
-  } else if (screenHeight > 600) {
+  } else if (screenHeight > 800) {
     factor = 40;
-  } else if (screenHeight > 500) {
-    factor = 42;
-  } else if (screenHeight && parseInt(screenHeight, 10) <= 500) {
-    factor = 44;
+  } else if (screenHeight && parseInt(screenHeight, 10) > 0) {
+    return 1037 / 38;
   }
 
   return screenHeight / factor;
 }
 
-export default class Grid extends PureComponent {
+export default class Grid extends Component {
   constructor(props) {
     super(props);
 
@@ -43,11 +43,15 @@ export default class Grid extends PureComponent {
       const height = window.innerHeight
         || document.documentElement.clientHeight
         || document.body.clientHeight;
+      const width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
 
-      this.setState({ screenHeight: height });
+      this.setState({ screenHeight: height, screenWidth: width });
     };
 
     this.resizeListener = this.resizeListener.bind(this);
+    this.resizeListener();
 
     window.addEventListener('resize', this.resizeListener, false);
   }
@@ -57,22 +61,44 @@ export default class Grid extends PureComponent {
   }
 
   render() {
-    const { screenHeight } = this.state;
+    const { screenHeight, screenWidth } = this.state;
 
     return (
       <div>
         <ResponsiveReactGridLayout
           {...gridConfig}
+          isDraggable={screenWidth > 480}
           rowHeight={getRowHeight(screenHeight)}
-          onLayoutChange={this.onLayoutChange}
-          onBreakpointChange={this.onBreakpointChange}
         >
-          <div key="1"><span className="text">Contact me</span></div>
-          <div key="2"><span className="text">Skill set</span></div>
-          <div key="3"><span className="text">About me</span></div>
-          <div key="4"><span className="text">Playground</span></div>
-          <div key="5"><span className="text">Projects</span></div>
-          <div key="6"><span className="text">Articles</span></div>
+          <div key="1">
+            <ContactCard />
+          </div>
+          <div key="2">
+            <SkillsCard />
+          </div>
+          <div key="3">
+            <LearningCard />
+          </div>
+          {/*<div key="4">*/}
+            {/*<div className="hovereffect">*/}
+              {/*<img className="img-responsive" src="/p3.jpg" alt="" role="presentation" />*/}
+              {/*<div className="overlay">*/}
+                {/*<h2>Playground</h2>*/}
+                {/*<p>*/}
+                  {/*<Link to={'/playground'}>LINK HERE</Link>*/}
+                {/*</p>*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*</div>*/}
+          <div key="5">
+            <ConsultingCard />
+          </div>
+          {/*<div key="6">*/}
+            {/*<SkillsCard />*/}
+          {/*</div> */}
+          {/*<div key="7"><span className="text">Projects</span></div>*/}
+          {/*<div key="8"><span className="text">Projects</span></div>*/}
+          {/*<div key="9"><span className="text">Projects</span></div>*/}
         </ResponsiveReactGridLayout>
       </div>
     );
