@@ -8,6 +8,8 @@ import SkillsCard from './SkillsCard';
 import LearningCard from './LearningCard';
 import ConsultingCard from './ConsultingCard';
 import PlaygroundCard from './PlaygroundCard';
+import ProjectsCard from './ProjectsCard';
+import WritingCard from './WritingCard';
 
 let ResponsiveReactGridLayout = GridLayout.Responsive;
 
@@ -85,12 +87,12 @@ export default class Grid extends Component {
           <div key="5">
             <ConsultingCard />
           </div>
-          {/*<div key="6">*/}
-            {/*<SkillsCard />*/}
-          {/*</div> */}
-          {/*<div key="7"><span className="text">Projects</span></div>*/}
-          {/*<div key="8"><span className="text">Projects</span></div>*/}
-          {/*<div key="9"><span className="text">Projects</span></div>*/}
+          <div key="6">
+            <ProjectsCard />
+          </div>
+          <div key="7">
+            <WritingCard />
+          </div>
         </ResponsiveReactGridLayout>
       </div>
     );

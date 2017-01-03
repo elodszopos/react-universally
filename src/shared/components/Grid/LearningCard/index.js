@@ -3,7 +3,7 @@ import './LearningCard.scss';
 
 const LearningCard = () => (
   <div className="lcwr">
-    <img src="/learning.jpg" alt="" role="presentation" />
+    <img src="/learning-min.jpg" alt="" role="presentation" />
     <div className="lco">
       <h2>Learning Materials</h2>
       <p className="cardContent">

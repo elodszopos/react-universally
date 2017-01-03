@@ -3,7 +3,7 @@ import './ContactCard.scss';
 
 const ContactCard = () => (
   <div className="ccwr">
-    <img className="img-responsive" src="/contact_3.jpg" alt="" role="presentation" />
+    <img className="img-responsive" src="/contact_3-min.jpg" alt="" role="presentation" />
     <div>
       <h2>CONTACT ME</h2>
       <p className="ccSet1">

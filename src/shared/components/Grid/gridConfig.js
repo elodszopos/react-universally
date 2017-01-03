@@ -102,7 +102,7 @@ const layoutConfig = {
     // ],
   // },
   className: 'layout',
-  breakpoints: { xl: 1600, lg: 1300, md: 1090, sm: 768, xs: 550, xxs: 0 },
+  breakpoints: { xl: 1600, lg: 1300, md: 1090, sm: 768, xs: 600, xxs: 0 },
   cols: { xl: 15, lg: 12, md: 10, sm: 8, xs: 6, xxs: 4 },
   useCSSTransforms: true,
   margin: [10, 10],

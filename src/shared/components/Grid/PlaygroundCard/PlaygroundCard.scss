@@ -17,6 +17,9 @@
     opacity: 0;
     filter: alpha(opacity=0);
     transition: opacity 0.35s, transform 0.45s;
+  }
+
+  p, .cardContent {
     transform: translate3d(-10px, 0, 0);
   }
 
@@ -26,10 +29,12 @@
 
   .cardContent {
     width: 70%;
+    margin-top: 0.5em;
   }
 
   h2 {
     @extend %cardHeader;
+    transform: translate3d(0, 0, 0);
   }
 
   .pgo {
@@ -65,9 +70,6 @@
       transition: all .4s ease-in-out;
     }
 
-    .cardContent {
-      margin-top: 0.5em;
-    }
 
     .pgo:before {
       transform: translate3d(0, 0, 0);

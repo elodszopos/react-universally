@@ -3,7 +3,7 @@ import './PlaygroundCard.scss';
 
 const PlaygroundCard = () => (
   <div className="pgcw">
-    <img src="/p3.jpg" alt="" role="presentation" />
+    <img src="/playground-min.jpg" alt="" role="presentation" />
     <div className="pgo">
       <h2>Playground</h2>
       <p className="cardContent">
