@@ -8,43 +8,25 @@
     text-shadow: 0 0 2px #fff;
     opacity: 0;
     filter: alpha(opacity=0);
-    transition: opacity 0.35s, transform 0.35s;
+    transition: opacity 0.55s, transform 0.45s;
     transform: translate3d(100%, 0, 0);
   }
 
   a {
     cursor: pointer;
+    transition: transform 0.45s;
   }
 
   img {
-    //position: absolute;
-    //left: 0;
-    //top: 0;
-    //height: 100%;
-    display: block;
-    position: relative;
-    max-width: none;
+    @extend %cardImage;
     width: calc(100% + 20px);
-    transition: all 0.35s, transform 0.35s;
+    transition: all 0.55s, transform 0.45s;
     transform: translate3d(-10px, 0, 0);
-    backface-visibility: hidden;
-    filter: alpha(opacity=90);
-    opacity: 0.9;
   }
 
   h2 {
-    text-shadow: 0 0 2px #fff;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    font-size: 22px;
-    overflow: hidden;
-    padding-bottom: 0.4em;
+    @extend %cardHeader;
     background-color: transparent;
-    transition: color 0.4s ease-in-out;
 
     &:after {
       position: absolute;
@@ -54,18 +36,13 @@
       height: 2px;
       background: #fff;
       content: '';
-      transition: transform 0.35s;
+      transition: transform 0.45s;
       transform: translate3d(-100%, 0, 0);
     }
   }
 
   .lco {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0;
+    @extend %cardOverlay;
     padding: 40px 20px;
   }
 
@@ -81,6 +58,8 @@
     h2 {
       color: #fff;
       text-shadow: 0 0 2px #fff;
+      filter: alpha(opacity=100);
+      opacity: 1;
 
       &:after {
         transform: translate3d(0, 0, 0);
@@ -91,16 +70,13 @@
       opacity: 1;
       filter: alpha(opacity=100);
       transform: translate3d(0, 0, 0);
+      transition: transform 0.45s;
     }
 
     a.cardLink {
       opacity: 1;
       filter: alpha(opacity=100);
-      transform: translatey(0);
-    }
-
-    a.cardLink {
-      transition-delay: .3s;
+      transform: translate3d(0, 0, 0);
     }
   }
 }
