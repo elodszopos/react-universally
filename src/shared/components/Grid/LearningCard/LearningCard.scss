@@ -43,7 +43,8 @@
 
   .lco {
     @extend %cardOverlay;
-    padding: 40px 20px;
+    background-color: transparent;
+    padding: 20px 20px;
   }
 
   &:hover {
@@ -58,8 +59,8 @@
     h2 {
       color: #fff;
       text-shadow: 0 0 2px #fff;
-      filter: alpha(opacity=100);
       opacity: 1;
+      filter: alpha(opacity=100);
 
       &:after {
         transform: translate3d(0, 0, 0);
@@ -70,7 +71,7 @@
       opacity: 1;
       filter: alpha(opacity=100);
       transform: translate3d(0, 0, 0);
-      transition: transform 0.45s;
+      transition: all 0.45s;
     }
 
     a.cardLink {

@@ -1,0 +1,76 @@
+@import '../common';
+
+.pgcw {
+  @extend %card;
+  background: $black;
+
+  img {
+    @extend %cardImage;
+    max-width: none;
+    width: calc(100% + 60px);
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  a, p, .cardContent {
+    color: $white;
+    text-shadow: 0 0 2px #fff;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transition: opacity 0.35s, transform 0.45s;
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  a {
+    margin-top: 0.4em;
+  }
+
+  .cardContent {
+    width: 70%;
+  }
+
+  h2 {
+    @extend %cardHeader;
+  }
+
+  .pgo {
+    @extend %cardOverlay;
+
+    &:before {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      border: 1px solid #fff;
+      content: '';
+      opacity: 0;
+      filter: alpha(opacity=0);
+      transition: opacity 0.35s, transform 0.45s;
+      transform: translate3d(-20px, 0, 0);
+    }
+  }
+
+  &:hover {
+    img {
+      transform: translate3d(15%, 0, 0) scale(1.5);
+    }
+
+    h2, a, p, .cardContent {
+      transform: translate3d(0, 25%, 0);
+    }
+
+    .pgo:before, h2, a, p, .cardContent {
+      opacity: 1;
+      filter: alpha(opacity=100);
+      transition: all .4s ease-in-out;
+    }
+
+    .cardContent {
+      margin-top: 0.5em;
+    }
+
+    .pgo:before {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

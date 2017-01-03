@@ -6,7 +6,7 @@ const ConsultingCard = () => (
     <img src="/consulting.jpg" alt="" role="presentation" />
     <div className="coco">
       <h2>Consulting</h2>
-      <div className="cardContent">I actively work as a freelancer consultant - see what I can help with</div>
+      <div className="cardContent">I actively work as a freelancer software consultant - see what I can help with</div>
       <a className="cardLink" href="#">Right here</a>
     </div>
   </div>

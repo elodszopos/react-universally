@@ -12,6 +12,7 @@
   }
 
   a {
+    text-shadow: 0 0 2px #fff;
     cursor: pointer;
     transition: all 0.4s;
     transition-delay: 0s;
@@ -28,7 +29,7 @@
 
   .coco {
     @extend %cardOverlay;
-    transition: all .4s ease-in-out;
+    background-color: transparent;
   }
 
   &:hover {

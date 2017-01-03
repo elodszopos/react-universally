@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import WidthProvider from 'react-grid-layout/build/components/WidthProvider';
 import GridLayout from 'react-grid-layout';
-import Link from 'react-router/Link';
 import gridConfig from './gridConfig';
 
 import ContactCard from './ContactCard';
 import SkillsCard from './SkillsCard';
 import LearningCard from './LearningCard';
 import ConsultingCard from './ConsultingCard';
+import PlaygroundCard from './PlaygroundCard';
 
 let ResponsiveReactGridLayout = GridLayout.Responsive;
 
@@ -79,17 +79,9 @@ export default class Grid extends Component {
           <div key="3">
             <LearningCard />
           </div>
-          {/*<div key="4">*/}
-            {/*<div className="hovereffect">*/}
-              {/*<img className="img-responsive" src="/p3.jpg" alt="" role="presentation" />*/}
-              {/*<div className="overlay">*/}
-                {/*<h2>Playground</h2>*/}
-                {/*<p>*/}
-                  {/*<Link to={'/playground'}>LINK HERE</Link>*/}
-                {/*</p>*/}
-              {/*</div>*/}
-            {/*</div>*/}
-          {/*</div>*/}
+          <div key="4">
+            <PlaygroundCard />
+          </div>
           <div key="5">
             <ConsultingCard />
           </div>

@@ -28,6 +28,8 @@ a.cardLink {
     box-shadow: 0 0 15px $white;
     transition-delay: 0s !important;
     cursor: pointer;
+    opacity: 1;
+    filter: alpha(opacity=100);
   }
 }
 
@@ -38,8 +40,8 @@ a.cardLink {
   text-align: center;
   position: relative;
   font-size: 22px;
-  filter: alpha(opacity=0);
   opacity: 0;
+  filter: alpha(opacity=0);
   padding: 0.6em 0.4em 0.4em;
   font-weight: 700;
   transition: all 0.3s ease-in-out;
@@ -56,6 +58,7 @@ a.cardLink {
 .cardContent {
   margin-top: 1em;
   color: $white;
+  text-shadow: 0 0 2px #fff;
 }
 
 %cardOverlay {
@@ -68,7 +71,12 @@ a.cardLink {
   align-items: center;
   top: 0;
   left: 0;
-  //opacity: 0;
-  //background-color: rgba(0, 0, 0, 0.6);
-  //transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+  }
 }
