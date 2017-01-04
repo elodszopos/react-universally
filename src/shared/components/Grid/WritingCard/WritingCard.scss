@@ -24,7 +24,8 @@
 
   h2 {
     @extend %cardHeader;
-    margin-top: 2em;
+    margin-top: 1em;
+    margin-top: 1vw;
     background-color: transparent;
     transform: translate3d(0, -100%, 0);
   }
@@ -55,7 +56,7 @@
 
     img {
       filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
-      filter: brightness(0.5);
+      filter: brightness(0.4);
     }
 
     h2, p, a.cardLink {
@@ -77,5 +78,10 @@
     margin-top: 5%;
     width: 80%;
     letter-spacing: 2px;
+  }
+
+  .article-medium-detail {
+    padding-left: 10px;
+    color: #93d034;
   }
 }

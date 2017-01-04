@@ -57,7 +57,7 @@ export default function webpackConfigFactory(buildOptions) {
 
     // Source map settings.
     devtool: ifElse(isNode || isDev || config.includeSourceMapsForProductionBuilds)(
-      'cheap-module-source-map',
+      'source-map',
       'hidden-source-map',
     ),
 

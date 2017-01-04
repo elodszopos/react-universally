@@ -11,6 +11,7 @@
     @extend %cardHeader;
     background-color: transparent;
     transform: translate3d(-150%, -400%, 0);
+
   }
 
   .cardContent {
@@ -19,12 +20,13 @@
 
   .pco {
     @extend %cardOverlay;
-    width: 55%;
-    height: 81%;
-    left: 22%;
-    top: 10%;
+    width: 66%;
+    height: 85%;
+    left: 19%;
+    top: 7%;
     border-radius: 80%;
     border: 2px solid #fff;
+    justify-content: center;
     transform: translate3d(50%, 50%, 0);
   }
 
