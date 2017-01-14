@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { CodeSplitProvider, createRenderContext } from 'code-split-component';
 import Helmet from 'react-helmet';
 import App from 'shared/components/App';
-import runTasksForLocation from 'shared/routeTasks/runTasksForLocation';
 import configureStore from 'shared/redux/configureStore';
+import { runJobs } from 'react-jobs/ssr';
 import generateHTML from './generateHTML';
 import config from '../../../../config';
 
@@ -36,28 +36,32 @@ export default function reactApplicationMiddleware(request, response) {
   }
 
   const store = configureStore();
-  const { dispatch, getState } = store;
+  const { getState } = store;
+  const reactRouterContext = createServerRenderContext();
+  const codeSplitContext = createRenderContext();
 
-  const renderApp = () => {
-    const reactRouterContext = createServerRenderContext();
-    const codeSplitContext = createRenderContext();
+  const app = (
+    <CodeSplitProvider context={codeSplitContext}>
+      <ServerRouter location={request.url} context={reactRouterContext}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ServerRouter>
+    </CodeSplitProvider>
+  );
 
-    const reactAppString = renderToString(
-      <CodeSplitProvider context={codeSplitContext}>
-        <ServerRouter location={request.url} context={reactRouterContext}>
-          <Provider store={store}>
-            <App />
-          </Provider>
-        </ServerRouter>
-      </CodeSplitProvider>,
-    );
-
+  runJobs(app).then(({ appWithJobs, state, STATE_IDENTIFIER }) => {
+    const reactAppString = renderToString(appWithJobs);
     const html = generateHTML({
       reactAppString,
       nonce,
       helmet: Helmet.rewind(),
       codeSplitState: codeSplitContext.getState(),
       initialState: getState(),
+      jobsState: {
+        state,
+        STATE_IDENTIFIER,
+      },
     });
 
     const renderResult = reactRouterContext.getResult();
@@ -70,16 +74,5 @@ export default function reactApplicationMiddleware(request, response) {
     }
 
     response.status(renderResult.missed ? 404 : 200).send(html);
-  };
-
-  const executingTasks = runTasksForLocation({ pathname: request.originalUrl }, ['prefetchData'], { dispatch, state: store.getState() });
-
-  if (executingTasks) {
-    executingTasks.then(({ routes }) => { // eslint-disable-line
-      console.log(routes);
-      renderApp();
-    });
-  } else {
-    renderApp();
-  }
+  });
 }

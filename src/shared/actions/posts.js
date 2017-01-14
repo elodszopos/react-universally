@@ -8,10 +8,10 @@ function fetched(post) {
 
 export function fetch(id) { // eslint-disable-line
   return (dispatch, getState, { axios }) => {
-    fetching(id);
+    dispatch(fetching(id));
 
     return axios
       .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then(({ data }) => dispatch(fetched(data)));
+      .then(({ data }) => dispatch(fetched(data))).then(() => true);
   };
 }

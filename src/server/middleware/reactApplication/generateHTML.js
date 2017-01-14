@@ -20,7 +20,7 @@ function scriptTags(jsFilePaths) {
 }
 
 export default function generateHTML(args) {
-  const { reactAppString, initialState, nonce, helmet, codeSplitState } = args;
+  const { reactAppString, initialState, nonce, helmet, codeSplitState, jobsState } = args;
 
   const chunksForRender = ['index'];
 
@@ -46,6 +46,7 @@ export default function generateHTML(args) {
         ${inlineScript(`window.__CLIENT_CONFIG__=${serialize(clientConfig)}`)}
         ${initialState ? inlineScript(`window.__APP_STATE__=${serialize(initialState)};`) : ''}
         ${codeSplitState ? inlineScript(`window.${STATE_IDENTIFIER}=${serialize(codeSplitState)};`) : ''}
+        ${jobsState ? inlineScript(`window.${jobsState.STATE_IDENTIFIER}=${serialize(jobsState.state)};`) : ''}
         ${config.polyfillIO.enabled ? scriptTag(config.polyfillIO.url) : ''}
         ${process.env.NODE_ENV === 'development' && config.bundles.client.devVendorDLL.enabled
             ? scriptTag(`${config.bundles.client.webPath}${config.bundles.client.devVendorDLL.name}.js?t=${Date.now()}`)

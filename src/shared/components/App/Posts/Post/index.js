@@ -1,5 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withJob } from 'react-jobs/ssr';
+import * as postActions from 'shared/actions/posts';
 import Helmet from 'react-helmet';
 import * as FromState from 'shared/redux';
 
@@ -40,10 +43,23 @@ export class Post extends PureComponent {
   }
 }
 
+const mapActionsToProps = {
+  fetchPost: postActions.fetch,
+};
+
 function mapStateToProps(state, { params: { id } }) {
   return {
     post: FromState.getPostById(state, id),
   };
 }
 
-export default connect(mapStateToProps)(Post);
+export default compose(
+  connect(mapStateToProps, mapActionsToProps),
+  withJob(({ params: { id }, post, fetchPost }) => {
+    if (post) {
+      return true;
+    }
+
+    return fetchPost(id);
+  }),
+)(Post);

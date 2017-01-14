@@ -4,36 +4,32 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router';
 import { CodeSplitProvider, rehydrateState } from 'code-split-component';
-import { Provider } from 'react-redux';
+import { Provider as ReduxProvider } from 'react-redux';
+import { rehydrateJobs } from 'react-jobs/ssr';
 import configureStore from 'shared/redux/configureStore';
 import App from 'shared/components/App';
 import ReactHotLoader from './components/ReactHotLoader';
-import TaskRoutesExecutor from './components/TaskRoutesExecutor';
 
 const container = document.querySelector('#app');
 
 const store = configureStore(window.__APP_STATE__);
 
 function renderApp(What) {
-  rehydrateState().then(codeSplitState =>
-    render(
+  rehydrateState().then((codeSplitState) => {
+    const app = (
       <ReactHotLoader>
         <CodeSplitProvider state={codeSplitState}>
-          <Provider store={store}>
+          <ReduxProvider store={store}>
             <BrowserRouter>
-              { routerProps => (
-                  <TaskRoutesExecutor {...routerProps} dispatch={store.dispatch}>
-                    {What}
-                  </TaskRoutesExecutor>
-                )
-              }
+              {What}
             </BrowserRouter>
-          </Provider>
+          </ReduxProvider>
         </CodeSplitProvider>
-      </ReactHotLoader>,
-      container,
-    ),
-  );
+      </ReactHotLoader>
+    );
+
+    rehydrateJobs(app).then(({ appWithJobs }) => render(appWithJobs, container));
+  });
 }
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
