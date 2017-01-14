@@ -6,7 +6,22 @@ import config from '../../../config';
 
 const cspConfig = {
   directives: {
+    childSrc: ['\'self\''],
+    // Note: Setting this to stricter than * breaks the service worker. :(
+    // I can't figure out how to get around this, so if you know of a safer
+    // implementation that is kinder to service workers please let me know.
+    connectSrc: ['*'], // ["'self'", 'ws:'],
     defaultSrc: ['\'self\''],
+    imgSrc: [
+      '\'self\'',
+      // If you use Base64 encoded images (i.e. inlined images), then you will
+      // need the following:
+      // 'data:',
+    ],
+    fontSrc: ['\'self\''],
+    objectSrc: ['\'self\''],
+    mediaSrc: ['\'self\''],
+    manifestSrc: ['\'self\''],
     scriptSrc: [
       '\'self\'',
       'cdn.polyfill.io',
@@ -22,20 +37,6 @@ const cspConfig = {
       '\'unsafe-inline\'',
       'blob:',
     ],
-    imgSrc: [
-      '\'self\'',
-      // If you use Base64 encoded images (i.e. inlined images), then you will
-      // need the following:
-      // 'data:',
-    ],
-    // Note: Setting this to stricter than * breaks the service worker. :(
-    // I can't figure out how to get around this, so if you know of a safer
-    // implementation that is kinder to service workers please let me know.
-    connectSrc: ['*'], // ["'self'", 'ws:'],
-    fontSrc: ['\'self\''],
-    objectSrc: ['\'self\''],
-    mediaSrc: ['\'self\''],
-    childSrc: ['\'self\''],
   },
 };
 

@@ -50,15 +50,16 @@ const config = {
   bundleAssetsFileName: 'assets.json',
 
   cspExtensions: {
+    childSrc: [],
+    connectSrc: [],
     defaultSrc: [],
+    fontSrc: [],
+    imgSrc: [],
+    mediaSrc: [],
+    manifestSrc: [],
+    objectSrc: [],
     scriptSrc: [],
     styleSrc: [],
-    imgSrc: [],
-    connectSrc: [],
-    fontSrc: [],
-    objectSrc: [],
-    mediaSrc: [],
-    childSrc: [],
   },
 
   nodeBundlesIncludeNodeModuleFileTypes: [
