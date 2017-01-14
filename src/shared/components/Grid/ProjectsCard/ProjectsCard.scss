@@ -5,6 +5,9 @@
 
   img {
     @extend %cardImage;
+    width: calc(100% + 60px);
+    transition: all 0.55s, transform 0.45s;
+    transform: translate3d(-40px, 0, 0);
   }
 
   h2 {
@@ -36,6 +39,7 @@
     img {
       filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="1.4" /><feFuncG type="linear" slope="1.4" /><feFuncB type="linear" slope="1.4" /></feComponentTransfer></filter></svg>#filter');
       filter: brightness(0.6);
+      transform: scale(1.4) translate3d(15%, 15%, 0);
     }
 
     .pco {

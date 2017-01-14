@@ -10,8 +10,8 @@ const ContactCard = () => (
         <a href="https://www.twitter.com/elodszopos" target="_blank" rel="noopener noreferrer" className="ccinfo">
           <i className="fa fa-twitter" />
         </a>
-        <a href="https://www.facebook.com/elodarpad.szopos" target="_blank" rel="noopener noreferrer" className="ccinfo">
-          <i className="fa fa-facebook" />
+        <a href="https://www.linkedin.com/in/elodszopos" target="_blank" rel="noopener noreferrer" className="ccinfo">
+          <i className="fa fa-linkedin" />
         </a>
       </p>
       <hr />

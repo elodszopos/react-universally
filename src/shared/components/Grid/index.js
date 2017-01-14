@@ -10,6 +10,7 @@ import ConsultingCard from './ConsultingCard';
 import PlaygroundCard from './PlaygroundCard';
 import ProjectsCard from './ProjectsCard';
 import WritingCard from './WritingCard';
+import AboutCard from './AboutCard';
 
 let ResponsiveReactGridLayout = GridLayout.Responsive;
 
@@ -92,6 +93,9 @@ export default class Grid extends Component {
           </div>
           <div key="7">
             <WritingCard />
+          </div>
+          <div key="8">
+            <AboutCard />
           </div>
         </ResponsiveReactGridLayout>
       </div>
